@@ -76,3 +76,5 @@ completeOrder(1);
 console.log("menu: ", menu);
 console.log("cashInHand: ", cashInHand);
 console.log("Order Queue: ", orderQueue);
+
+// let's chexk the output of the above code
