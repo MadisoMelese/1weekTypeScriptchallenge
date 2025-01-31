@@ -1,3 +1,14 @@
+type Item = {
+  name: string;
+  price: number;
+}
+
+type Order = {
+  id: number;
+  item: Item;
+  status: string;
+}
+
 const menu = [
   {
     name: "Home",
@@ -15,66 +26,42 @@ const menu = [
     name: "Laptop",
     price: 750,
   },
-];
+]
 
-
-type OrderObj = {
-  name: string;
-  price: number;
-}
-
-type Order = {
-  id: number;
-  order: OrderObj;
-  status: string;
-}
-
-
-let cashInHand = 1000;
+let cashInRegister = 1000;
 let nextOrderId = 1;
-let orderQueue:Order[] = [];
+const orderQueue: Order[] = [];
 
+function addNewItem(itemObj: Item) {
+  menu.push(itemObj);
+}
 
-const addnewOrder = (orderObj:OrderObj) => {
-  menu.push(orderObj);
-};
-
-const placeOrder = (orderName: string) => {
-  const selectedOrder = menu.find((order) => order.name === orderName);
-  if (!selectedOrder) {
-    console.log(`${orderName}`);
+function placeOrder(itemName: string) {
+  const selectedItem = menu.find(itemObj => itemObj.name === itemName);
+  if (!selectedItem) {
+    console.log(`${itemName} not found`);
     return;
   }
-  cashInHand += selectedOrder.price;
-  const newOrder = {
-    id: nextOrderId++,
-    order: selectedOrder,
-    status: "Ordered"
-  };
-
+  cashInRegister += selectedItem.price;
+  const newOrder: Order = { id: nextOrderId++, item: selectedItem, status: "pending" };
   orderQueue.push(newOrder);
   return newOrder;
-};
+}
 
-const completeOrder = (orderId:number) => {
-  const order = orderQueue.find((order) => order.id === orderId);
+function completeOrder(orderId: number) {
+  const order = orderQueue.find(order => order.id === orderId);
   if (!order) {
-    console.log(`Order not found`);
+    console.log(`Order with id ${orderId} not found`);
     return;
   }
-  order.status = "Completed";
+  order.status = "completed";
   return order;
-};
+}
 
-addnewOrder({ name: "Shirt", price: 300 });
-addnewOrder({ name: "Shoes", price: 500 });
-addnewOrder({ name: "Watch", price: 100 });
-
-placeOrder("Shirt");
-completeOrder(1);
+addNewItem({ name: "Burger", price: 500 });
+addNewItem({ name: "Pizza", price: 1000 });
+addNewItem({ name: "Pasta", price: 750 });
 
 console.log("menu: ", menu);
-console.log("cashInHand: ", cashInHand);
+console.log("cashInRegister: ", cashInRegister);
 console.log("Order Queue: ", orderQueue);
-
-// let's chexk the output of the above code
