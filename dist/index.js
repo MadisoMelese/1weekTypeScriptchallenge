@@ -6,4 +6,9 @@ if (age < 50) {
 else {
     console.log("You are old");
 }
+const username = "Madisha";
+function greetUser(name) {
+    console.log(`Hello ${name}!`);
+}
+greetUser("username");
 //# sourceMappingURL=index.js.map

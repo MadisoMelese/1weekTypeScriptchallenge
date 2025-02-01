@@ -5,3 +5,11 @@ if(age<50){
 else{
     console.log("You are old");
 }
+
+const username: string ="Madisha"
+
+function greetUser(name: string): void {
+    console.log(`Hello ${name}!`);
+}
+
+greetUser("username");
