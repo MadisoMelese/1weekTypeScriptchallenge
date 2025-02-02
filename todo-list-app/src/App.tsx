@@ -1,12 +1,10 @@
-import React from 'react';
 
-
-const App = () =>{
+const App = () => {
   return (
-    <div className="App">
-helllllljhgijfdh
+    <div>
+      Todo-List-App
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
